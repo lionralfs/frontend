@@ -1,3 +1,8 @@
+import * as d3 from 'd3';
+import { map, tileLayer } from 'leaflet';
+import '../css/style.css';
+import 'leaflet/dist/leaflet.css';
+
 (async () => {
   const rawData = await d3.csv(
     'https://gist.githubusercontent.com/mbostock/14613fb82f32f40119009c94f5a46d72/raw/d0d70ffb7b749714e4ba1dece761f6502b2bdea2/aapl.csv',
@@ -124,7 +129,8 @@ function InitChart(lineData) {
     .attr('fill', 'none');
 }
 
-const map = L.map('map').setView([51.505, -0.09], 13);
-L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+const leafletMap = map('map').setView([53.551086, 9.993682], 13);
+
+tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
   attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-}).addTo(map);
+}).addTo(leafletMap);
