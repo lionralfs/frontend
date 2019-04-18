@@ -1,0 +1,50 @@
+body {
+  background: #1B425D;
+  color: #B5A552;
+  font-family: "Lato";
+}
+
+.svg-container {
+  display: inline-block;
+  position: relative;
+  width: 100%;
+  padding-bottom: 100%;
+  vertical-align: top;
+  overflow: hidden;
+}
+
+.svg-content {
+  display: inline-block;
+  position: absolute;
+  top: 0;
+  left: 0;
+  border: 2px solid #1B425D;
+  background: #B5A552;
+}
+
+.sidebar {
+  position: fixed;
+  width: 30vw;
+  height: 100%;
+  right: 0;
+  top: 0;
+  background: #CFD6C1;
+  color: #1B425D;
+  box-shadow: 2px 0 6px 2px rgba(0, 0, 0, 0.5);
+}
+
+.sidebar main {
+  padding: 10px 20px;
+}
+
+.map-wrapper {
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 70vw;
+  height: 100%;
+}
+
+#map { 
+  height: 100%;
+}
