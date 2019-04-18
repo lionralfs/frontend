@@ -24,7 +24,7 @@ body {
 
 .sidebar {
   position: fixed;
-  width: 30vw;
+  width: 50vw;
   height: 100%;
   right: 0;
   top: 0;
@@ -41,7 +41,7 @@ body {
   position: fixed;
   left: 0;
   top: 0;
-  width: 70vw;
+  width: 50vw;
   height: 100%;
 }
 
