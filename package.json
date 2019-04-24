@@ -1,0 +1,37 @@
+{
+  "name": "frontend",
+  "private": true,
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "NODE_ENV=production webpack",
+    "start": "webpack-dev-server",
+    "start:install": "npm install && webpack-dev-server"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/base-camp-luftdaten/frontend.git"
+  },
+  "keywords": [],
+  "author": "Lion Ralfs <lion.ralfs@gmail.com> (https://github.com/lionralfs)",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/base-camp-luftdaten/frontend/issues"
+  },
+  "homepage": "https://github.com/base-camp-luftdaten/frontend#readme",
+  "devDependencies": {
+    "css-loader": "^2.1.1",
+    "file-loader": "^3.0.1",
+    "html-webpack-plugin": "^3.2.0",
+    "mini-css-extract-plugin": "^0.6.0",
+    "webpack": "^4.30.0",
+    "webpack-cli": "^3.3.0",
+    "webpack-dev-server": "^3.3.1"
+  },
+  "dependencies": {
+    "d3": "^5.9.2",
+    "leaflet": "^1.4.0"
+  }
+}
