@@ -1,40 +1,16 @@
 import * as d3 from 'd3';
-import { map, tileLayer } from 'leaflet';
 import '../css/style.css';
-import 'leaflet/dist/leaflet.css';
+import { fetchData } from './data';
+import { initMap } from './air-map';
 
 (async () => {
+  const airData = await fetchData();
+  initMap(airData);
+
   const rawData = await d3.csv(
     'https://gist.githubusercontent.com/mbostock/14613fb82f32f40119009c94f5a46d72/raw/d0d70ffb7b749714e4ba1dece761f6502b2bdea2/aapl.csv',
     d3.autoType
   );
-
-  const dummyData = [
-    {
-      x: 1,
-      y: 5
-    },
-    {
-      x: 20,
-      y: 20
-    },
-    {
-      x: 40,
-      y: 10
-    },
-    {
-      x: 60,
-      y: 40
-    },
-    {
-      x: 80,
-      y: 5
-    },
-    {
-      x: 100,
-      y: 60
-    }
-  ];
 
   const stockData = rawData.map(({ close, date }) => {
     return {
@@ -43,10 +19,10 @@ import 'leaflet/dist/leaflet.css';
     };
   });
 
-  InitChart(stockData);
+  initChart(stockData);
 })();
 
-function InitChart(lineData) {
+function initChart(lineData) {
   const vis = d3
     .select('#chart-1')
     .append('svg')
@@ -92,7 +68,10 @@ function InitChart(lineData) {
     .tickSize(5)
     .tickFormat(val => {
       const date = new Date(val);
-      return `${date.getMonth()}/${date.getFullYear().toString().substr(2, 2)}`;
+      return `${date.getMonth()}/${date
+        .getFullYear()
+        .toString()
+        .substr(2, 2)}`;
     });
 
   const yAxis = d3
@@ -234,9 +213,3 @@ function InitChart(lineData) {
       });
     });
 }
-
-const leafletMap = map('map').setView([53.551086, 9.993682], 13);
-
-tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-  attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-}).addTo(leafletMap);
