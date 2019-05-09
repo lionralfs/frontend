@@ -10,7 +10,7 @@ function getElementWithinWrapper(wrapper, selector) {
   return result;
 }
 
-export function initRangeSlider() {
+export function initRangeSlider(onChange) {
   const wrapper = getSliderWrapper();
   const slider = getElementWithinWrapper(wrapper, '.range-slider');
   const leftLabel = getElementWithinWrapper(wrapper, '.left');
@@ -23,6 +23,8 @@ export function initRangeSlider() {
   rightLabel.innerText = 'now';
 
   slider.addEventListener('input', event => {
-    middleLabel.innerText = `-${24 - parseInt(event.target.value)}h`;
+    const sliderPos = 24 - parseInt(event.target.value);
+    middleLabel.innerText = `-${sliderPos}h`;
+    onChange(sliderPos);
   });
 }
