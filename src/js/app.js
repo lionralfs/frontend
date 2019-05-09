@@ -2,10 +2,15 @@ import * as d3 from 'd3';
 import '../css/style.css';
 import { fetchData } from './data';
 import { initMap } from './air-map';
+import { initRangeSlider } from './range-slider';
 
 (async () => {
   const airData = await fetchData();
-  initMap(airData);
+  const heatmap = initMap(airData[0]);
+
+  initRangeSlider(i => {
+    heatmap.setData({ data: airData[Math.min(i, 23)] });
+  });
 
   const rawData = await d3.csv(
     'https://gist.githubusercontent.com/mbostock/14613fb82f32f40119009c94f5a46d72/raw/d0d70ffb7b749714e4ba1dece761f6502b2bdea2/aapl.csv',

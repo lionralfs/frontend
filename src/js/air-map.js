@@ -18,12 +18,10 @@ const cfg = {
   // which field name in your data represents the longitude - default "lng"
   lngField: 'lng',
   // which field name in your data represents the data value - default "value"
-  valueField: 'count'
+  valueField: 'p2val'
 };
 
 export const initMap = airData => {
-  console.log(airData);
-
   const osmTileLayer = tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
     attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
   });
@@ -37,4 +35,6 @@ export const initMap = airData => {
   });
 
   heatmapLayer.setData({ data: airData });
+
+  return heatmapLayer;
 };
