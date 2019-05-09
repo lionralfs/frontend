@@ -11,7 +11,7 @@ To start developing, there are 2 options to get the project up and running:
    Run the following commands to start a local development server:
 
    ```sh
-   docker-compose build --no-cache
+   docker-compose build --no-cache web
    docker-compose up
    ```
 
