@@ -34,3 +34,17 @@ To start developing, there are 2 options to get the project up and running:
    ```
 
    to start the development server.
+
+## Running tests
+
+To run all tests, use
+
+```sh
+npm test
+```
+
+Or, to have the tests run in watch mode (re-run every time the test/source files are changed), use:
+
+```sh
+npm test -- --watch
+```
