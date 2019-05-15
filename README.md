@@ -34,3 +34,16 @@ To start developing, there are 2 options to get the project up and running:
    ```
 
    to start the development server.
+
+## Contributing
+
+1. `git checkout master`
+2. `git pull`
+3. `git checkout -b <branch-name>`
+4. `npm install`
+5. `npm start`
+6. Apply your changes
+7. `git add .`
+8. `git commit -m "commit message"`
+9. `git push -u origin <branch-name>`
+10. Go to GitHub and open a pull request
