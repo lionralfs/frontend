@@ -24,7 +24,7 @@ function hasLocationData(measurement) {
 }
 
 function modifyParseDate(measurement) {
-  const measurementTime = new Date(`${measurement.timestamp}Z`);
+  const measurementTime = new Date(`${measurement.timestamp.replace(/ /, 'T')}Z`);
   measurement.timestamp = measurementTime;
   return measurement;
 }
@@ -67,9 +67,17 @@ function pipe(...fns) {
   };
 }
 
-export const fetchData = async () => {
-  const rawData = await fetch('http://api.luftdaten.info/static/v2/data.24h.json').then(r => r.json());
-  const filteredMeasurements = rawData.filter(and(isSDS011, hasLocationData, hasP2Values));
+export async function fetchData() {
+  const rawData = await fetch('https://api.luftdaten.info/static/v2/data.24h.json').then(r => r.json());
+  return processData(rawData, Date.now());
+}
+
+/**
+ * @param {Array<any>} data
+ * @param {Date} now
+ */
+export function processData(data, now) {
+  const filteredMeasurements = data.filter(and(isSDS011, hasLocationData, hasP2Values));
   const cleanMeasurements = filteredMeasurements.map(
     pipe(
       modifyParseDate,
@@ -79,16 +87,14 @@ export const fetchData = async () => {
     )
   );
 
-  const locationMap = new Map();
-  const timeSpans = new Array(24).fill(0).map(() => []);
-  const now = Date.now();
+  const result = new Array(24).fill(0).map(() => []);
 
   for (const measurement of cleanMeasurements) {
     const hoursSince = Math.floor((now - measurement.timestamp) / (60 * 60 * 1000));
 
     if (hoursSince < 0 || hoursSince > 23) continue;
-    timeSpans[hoursSince].push(measurement);
+    result[hoursSince].push(measurement);
   }
 
-  return timeSpans;
-};
+  return result;
+}
