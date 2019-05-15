@@ -24,7 +24,7 @@ function hasLocationData(measurement) {
 }
 
 function modifyParseDate(measurement) {
-  const measurementTime = new Date(`${measurement.timestamp}Z`);
+  const measurementTime = new Date(`${measurement.timestamp.replace(/ /, 'T')}Z`);
   measurement.timestamp = measurementTime;
   return measurement;
 }
