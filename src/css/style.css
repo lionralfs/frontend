@@ -78,9 +78,24 @@ body {
   border: 0;
 }
 
-/* the slider thumb */
-.range-slider::-webkit-slider-thumb,
-.range-slider::-moz-range-thumb {
+/* the slider thumb for safari, chrome, etc.*/
+.range-slider::-webkit-slider-thumb
+{
+  -webkit-appearance: none;
+  border: 1px solid #000000;
+  height: 40px;
+  width: 12px;
+  border-radius: 3px;
+  background: #ffffff;
+  cursor: pointer;
+  margin-top: -19px;
+  box-shadow: 1px 1px 1px #000000, 0px 0px 1px #1B425D;
+}
+
+
+/* the slider thumb for firefox */
+.range-slider::-moz-range-thumb
+{
   -webkit-appearance: none;
   border: 1px solid #000000;
   height: 40px;
@@ -92,15 +107,31 @@ body {
   box-shadow: 1px 1px 1px #000000, 0px 0px 1px #1B425D;
 }
 
-/* the slider track */
-.range-slider::-webkit-slider-runnable-track,
-.range-slider::-moz-range-track {
+
+/* the slider track for safari, chrome, etc. */
+.range-slider::-webkit-slider-runnable-track
+{
+  border-radius: 2px;
+  background: #1B425D;
+  border: 1px solid #1B425D;
+  height: 5px;
+}
+
+/* the slider track for firefox */
+.range-slider::-moz-range-track
+{
   border-radius: 2px;
   background: #1B425D;
   border: 1px solid #1B425D;
 }
 
-.range-slider-wrapper .left,
+.range-slider-wrapper .left{
+  position: absolute;
+  left: 0;
+  bottom: -30px;
+  transform: translateX(-50%);
+}
+
 .range-slider-wrapper .right {
   position: absolute;
   left: 0;
