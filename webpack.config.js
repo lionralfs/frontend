@@ -50,5 +50,9 @@ module.exports = {
       template: './src/index.html',
       hash: true
     })
-  ]
+  ],
+  // @see https://www.chartjs.org/docs/2.8.0/getting-started/integration.html#bundlers-webpack-rollup-etc
+  externals: {
+    moment: 'moment'
+  }
 };

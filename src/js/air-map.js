@@ -21,7 +21,7 @@ const cfg = {
   valueField: 'p2val'
 };
 
-export const initMap = airData => {
+export function initMap(airData, onVisibleAreaChanged) {
   const osmTileLayer = tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
     attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
   });
@@ -34,7 +34,9 @@ export const initMap = airData => {
     layers: [osmTileLayer, heatmapLayer]
   });
 
+  leafletMap.on('zoomend', onVisibleAreaChanged);
+  leafletMap.on('moveend', onVisibleAreaChanged);
   heatmapLayer.setData({ data: airData });
 
   return heatmapLayer;
-};
+}
