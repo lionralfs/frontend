@@ -1,111 +1,137 @@
 body {
-  background: #1B425D;
-  color: #B5A552;
-  font-family: "Lato";
+    background: #1B425D;
+    color: #B5A552;
+    font-family: "Lato";
 }
 
 .svg-container {
-  display: inline-block;
-  position: relative;
-  width: 100%;
-  padding-bottom: 100%;
-  vertical-align: top;
-  overflow: hidden;
+    display: inline-block;
+    position: relative;
+    width: 100%;
+    padding-bottom: 100%;
+    vertical-align: top;
+    overflow: hidden;
 }
 
 .svg-content {
-  display: inline-block;
-  position: absolute;
-  top: 0;
-  left: 0;
-  border: 2px solid #1B425D;
-  background: #B5A552;
+    display: inline-block;
+    position: absolute;
+    top: 0;
+    left: 0;
+    border: 2px solid #1B425D;
+    background: #B5A552;
 }
 
 .sidebar {
-  position: fixed;
-  width: 50vw;
-  height: 100%;
-  right: 0;
-  top: 0;
-  background: #CFD6C1;
-  color: #1B425D;
-  box-shadow: 2px 0 6px 2px rgba(0, 0, 0, 0.5);
-  overflow-y: auto;
+    opacity: 0.8;
+    position: fixed;
+    width: 0;
+    height: 100%;
+    right: 0;
+    top: 0;
+    background: #CFD6C1;
+    color: #1B425D;
+    box-shadow: 2px 0 6px 2px rgba(0, 0, 0, 0.5);
+    overflow-y: auto;
 }
 
 .sidebar main {
-  padding: 10px 20px;
+    padding: 10px 20px;
+}
+
+.sidebar:hover {
+    opacity: 1;
+}
+
+.openbtn {
+    font-size: 20px;
+    cursor: pointer;
+    background-color: #111;
+    color: white;
+    padding: 10px 15px;
+    position: absolute;
+    top: 0;
+    right: 0;
+    z-index: 500;
+    border: none;
+}
+
+.openbtn:hover {
+    background-color: #444;
 }
 
 .map-wrapper {
-  position: fixed;
-  left: 0;
-  top: 0;
-  width: 50vw;
-  height: 100%;
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
 }
 
-#map { 
-  height: 100%;
+#map {
+    height: 100%;
 }
 
 .range-slider-wrapper {
-  opacity: 0; /* hide the slider by default, show it via javascript */
-  transition: opacity 0.3s ease-in;
-  position: absolute;
-  z-index: 500;
-  bottom: 40px;
-  height: 20px;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 400px;
-  max-width: 80%;
-  color: #1B425D;
+    opacity: 0;
+    /* hide the slider by default, show it via javascript */
+    transition: opacity 0.3s ease-in;
+    position: absolute;
+    z-index: 500;
+    bottom: 40px;
+    height: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 400px;
+    max-width: 80%;
+    color: #1B425D;
 }
 
 .range-slider {
-  -webkit-appearance: none;
-  background: transparent;
-  width: 100%;
+    -webkit-appearance: none;
+    background: transparent;
+    width: 100%;
 }
 
 .range-slider:focus {
-  outline: none;
+    outline: none;
 }
+
 
 /* focus on firefox */
+
 .range-slider::-moz-focus-outer {
-  border: 0;
+    border: 0;
 }
 
+
 /* the slider thumb for safari, chrome, etc.*/
-.range-slider::-webkit-slider-thumb
-{
-  -webkit-appearance: none;
-  border: 1px solid #000000;
-  height: 40px;
-  width: 12px;
-  border-radius: 3px;
-  background: #ffffff;
-  cursor: pointer;
-  margin-top: -19px;
-  box-shadow: 1px 1px 1px #000000, 0px 0px 1px #1B425D;
+
+.range-slider::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    border: 1px solid #000000;
+    height: 40px;
+    width: 12px;
+    border-radius: 3px;
+    background: #ffffff;
+    cursor: pointer;
+    margin-top: -19px;
+    box-shadow: 1px 1px 1px #000000, 0px 0px 1px #1B425D;
 }
 
 
 /* the slider thumb for firefox */
-.range-slider::-moz-range-thumb
-{
-  -webkit-appearance: none;
-  border: 1px solid #000000;
-  height: 40px;
-  width: 12px;
-  border-radius: 3px;
-  background: #ffffff;
-  cursor: pointer;
-  margin-top: -14px;
-  box-shadow: 1px 1px 1px #000000, 0px 0px 1px #1B425D;
+
+.range-slider::-moz-range-thumb {
+    -webkit-appearance: none;
+    border: 1px solid #000000;
+    height: 40px;
+    width: 12px;
+    border-radius: 3px;
+    background: #ffffff;
+    cursor: pointer;
+    margin-top: -14px;
+    box-shadow: 1px 1px 1px #000000, 0px 0px 1px #1B425D;
 }
 
 /* the slider thumb for IE and Edge */
@@ -124,20 +150,21 @@ body {
 
 
 /* the slider track for safari, chrome, etc. */
-.range-slider::-webkit-slider-runnable-track
-{
-  border-radius: 2px;
-  background: #1B425D;
-  border: 1px solid #1B425D;
-  height: 5px;
+
+.range-slider::-webkit-slider-runnable-track {
+    border-radius: 2px;
+    background: #1B425D;
+    border: 1px solid #1B425D;
+    height: 5px;
 }
 
+
 /* the slider track for firefox */
-.range-slider::-moz-range-track
-{
-  border-radius: 2px;
-  background: #1B425D;
-  border: 1px solid #1B425D;
+
+.range-slider::-moz-range-track {
+    border-radius: 2px;
+    background: #1B425D;
+    border: 1px solid #1B425D;
 }
 
 /* the slider track for IE and Edge */
@@ -148,8 +175,6 @@ body {
   border: 1px solid #1B425D;
 }
 
-
-
 .range-slider-wrapper .left{
   position: absolute;
   left: 0;
@@ -158,22 +183,22 @@ body {
 }
 
 .range-slider-wrapper .right {
-  position: absolute;
-  left: 0;
-  bottom: -30px;
-  transform: translateX(-50%);
+    position: absolute;
+    left: 0;
+    bottom: -30px;
+    transform: translateX(-50%);
 }
 
 .range-slider-wrapper .right {
-  left: auto;
-  right: 0;
-  transform: translateX(50%);
+    left: auto;
+    right: 0;
+    transform: translateX(50%);
 }
 
 .range-slider-wrapper .now {
-  position: absolute;
-  bottom: -30px;
-  left: 50%;
-  transform: translateX(-50%);
-  color: red;
+    position: absolute;
+    bottom: -30px;
+    left: 50%;
+    transform: translateX(-50%);
+    color: red;
 }
