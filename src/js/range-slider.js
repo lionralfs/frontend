@@ -22,8 +22,12 @@ export function initRangeSlider(onChange) {
   leftLabel.innerText = '-24h';
   rightLabel.innerText = 'now';
 
+  /*
+  Eventlistener for the slider
+  */
   slider.addEventListener('input', event => {
     const sliderPos = 24 - parseInt(event.target.value);
+
     middleLabel.innerText = `-${sliderPos}h`;
     onChange(sliderPos);
   });
