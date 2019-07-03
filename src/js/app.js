@@ -65,10 +65,12 @@ function openSidebar() {
     document.getElementById("sidebar").style.width = "50%";
     document.getElementById("map-wrapper").style.width = "50%";
     document.getElementById("map").style.width = "200%";
+    document.getElementById("openbtn").innerHTML = '&#10005';
 }
 
 function closeSidebar() {
     document.getElementById("sidebar").style.width = "0";
     document.getElementById("map-wrapper").style.width = "100%";
     document.getElementById("map").style.width = "100%";
+    document.getElementById("openbtn").innerHTML = '&#9776;';
 }
