@@ -55,20 +55,23 @@ document.getElementById("openbtn").addEventListener("click", toggleSidebar);
 
 function toggleSidebar() {
     let sidebarSize = document.getElementById("sidebar").style.width;
-    if (sidebarSize == "50%") {
+    if (sidebarSize == "30%") {
         return closeSidebar();
     }
     return openSidebar();
 }
 
+/*
+Opens the sidebar
+*/
 function openSidebar() {
-    document.getElementById("sidebar").style.width = "50%";
-    document.getElementById("map-wrapper").style.width = "50%";
+    document.getElementById("sidebar").style.width = "30%";
+    document.getElementById("map-wrapper").style.width = "70%";
     document.getElementById("map").style.width = "200%";
 }
 
 function closeSidebar() {
     document.getElementById("sidebar").style.width = "0";
     document.getElementById("map-wrapper").style.width = "100%";
-    document.getElementById("map").style.width = "100%";
+    document.getElementById("map").style.width = "200%";
 }
