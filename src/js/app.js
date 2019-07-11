@@ -39,21 +39,11 @@ import inside from 'point-in-polygon';
     airChart = initAirChart(prepareDataForChart(airData));
 })();
 
-/* Set the width of the sidebar to 250px and the left margin of the page content to 250px 
-function openSidebar() {
-    document.getElementById("sidebar").style.width = "40%";
-    document.getElementById("openbtn").style.marginLeft = "250px";
-}*/
-
-/* Set the width of the sidebar to 0 and the left margin of the page content to 0 
-function closeSidebar() {
-    document.getElementById("sidebar").style.width = "0";
-    document.getElementById("openbtn").style.marginLeft = "0";
-}*/
 
 document.getElementById("openbtn").addEventListener("click", toggleSidebar);
 
 function toggleSidebar() {
+
     let sidebarSize = document.getElementById("sidebar").style.width;
     if (sidebarSize == "30%") {
         return closeSidebar();
@@ -62,7 +52,7 @@ function toggleSidebar() {
 }
 
 /*
-Opens the sidebar
+Opens/closes the sidebar
 */
 function openSidebar() {
     document.getElementById("sidebar").style.width = "30%";
