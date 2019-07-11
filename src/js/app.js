@@ -67,6 +67,7 @@ Opens the sidebar
 function openSidebar() {
     document.getElementById("sidebar").style.width = "30%";
     document.getElementById("map-wrapper").style.width = "70%";
+    document.getElementById("navbar").style.width = "70%";
     document.getElementById("map").style.width = "200%";
     document.getElementById("openbtn").innerHTML = '&#10005';
 }
@@ -74,6 +75,7 @@ function openSidebar() {
 function closeSidebar() {
     document.getElementById("sidebar").style.width = "0";
     document.getElementById("map-wrapper").style.width = "100%";
+    document.getElementById("navbar").style.width = "100%";
     document.getElementById("map").style.width = "200%";
     document.getElementById("openbtn").innerHTML = '&#9776;';
 }

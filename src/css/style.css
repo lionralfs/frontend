@@ -1,5 +1,5 @@
 body {
-    background: #1B425D;
+    background: black;
     color: rgb(255, 255, 255);
     font-family: "Lato";
 }
@@ -20,6 +20,15 @@ body {
     left: 0;
     border: 2px solid #1B425D;
     background: rgb(255, 255, 255);
+}
+
+.leaflet-top {
+    bottom: 0;
+}
+
+.leaflet-top .leaflet-control-zoom {
+    top: 100px;
+    transform: translateY(-50%);
 }
 
 .sidebar {
@@ -60,6 +69,56 @@ body {
 
 .openbtn:hover {
     background-color: #444;
+}
+
+
+/* Add a black background color to the top navigation */
+
+.topnav {
+    width: 100%;
+    position: fixed;
+    top: 0;
+    background-color: rgb(0, 0, 0);
+    overflow: hidden;
+    transition: width 1s;
+    z-index: 500;
+}
+
+
+/* Style the links inside the navigation bar */
+
+.topnav a {
+    float: left;
+    color: white;
+    text-align: center;
+    padding: 14px 15px;
+    text-decoration: none;
+    font-size: 17px;
+}
+
+.topnav name {
+    float: left;
+    color: white;
+    text-align: center;
+    padding: 14px 15px;
+    font-size: 17px;
+}
+
+
+/* Change the color of links on hover */
+
+.topnav a:hover {
+    background-color: #444;
+    color: black;
+    transition: background-color 0.3s;
+}
+
+
+/* Add a color to the active/current link */
+
+.topnav a.active {
+    background-color: #444;
+    color: white;
 }
 
 .map-wrapper {
