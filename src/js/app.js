@@ -41,6 +41,12 @@ import inside from 'point-in-polygon';
 
 
 document.getElementById("openbtn").addEventListener("click", toggleSidebar);
+document.querySelector('.mobile-open').addEventListener('click', toggleSideBarMobile);
+document.querySelector('.mobile-close').addEventListener('click', toggleSideBarMobile);
+
+function toggleSideBarMobile() {
+    document.querySelector('.sidebar').classList.toggle('open');
+}
 
 function toggleSidebar() {
 

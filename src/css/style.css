@@ -98,12 +98,13 @@ body {
     font-size: 17px;
 }
 
-.topnav name {
+.topnav h1 {
     float: left;
     color: white;
     text-align: center;
     padding: 15px 15px;
     font-size: 17px;
+    margin: 0;
 }
 
 
@@ -270,6 +271,32 @@ body {
     color: red;
 }
 
+.sidebar .mobile-close {
+    display: none;
+
+    border: none;
+    background: transparent;
+    font-size: 25px;
+    float: right;
+    padding: 7px 14px;
+    cursor: pointer;
+}
+
+.mobile-open {
+    display: none;
+
+    position: absolute;
+    bottom: 0px;
+    z-index: 500;
+    width: 101%;
+    height: 40px;
+    border: 0;
+    background: #000;
+    color: #fff;
+    font-size: 10px;
+    cursor: pointer;
+}
+
 
 /* On screens that are 600px wide or less, make the menu links stack on top of each other instead of next to each other */
 
@@ -278,10 +305,10 @@ body {
         overflow-y: scroll;
     }
     .map-wrapper {
-        height: 60%;
+        height: 100vh;
     }
     .topnav a,
-    .topnav name {
+    .topnav h1 {
         float: left;
         width: 100%;
     }
@@ -289,15 +316,37 @@ body {
         visibility: hidden;
     }
     .sidebar {
-        height: 40%;
+        height: calc(100vh - 50px); /* 100 viewport height minus the 50px height of the navbar */
         opacity: 1;
         width: 100%;
         bottom: 0;
-        top: auto;
         right: 0;
         left: 0;
         position: fixed;
         padding: 0;
         margin: 0;
+        top: 100vh;
+        transition: transform 0.3s ease-in;
+        transform: translateY(0);
+    }
+    
+    .sidebar.open {
+        transform: translateY(calc(-100vh + 50px));
+    }
+
+    .sidebar .mobile-close {
+        display: block;
+    }
+
+    .mobile-open {
+        display: block;
+    }
+
+    .leaflet-bottom {
+        bottom: 40px !important;
+    }
+
+    .range-slider-wrapper {
+        bottom: 90px;
     }
 }
