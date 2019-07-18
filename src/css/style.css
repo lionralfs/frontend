@@ -273,7 +273,6 @@ body {
 
 .sidebar .mobile-close {
     display: none;
-
     border: none;
     background: transparent;
     font-size: 25px;
@@ -284,7 +283,6 @@ body {
 
 .mobile-open {
     display: none;
-
     position: absolute;
     bottom: 0px;
     z-index: 500;
@@ -316,7 +314,8 @@ body {
         visibility: hidden;
     }
     .sidebar {
-        height: calc(100vh - 50px); /* 100 viewport height minus the 50px height of the navbar */
+        height: calc(100vh - 50px);
+        /* 100 viewport height minus the 50px height of the navbar */
         opacity: 1;
         width: 100%;
         bottom: 0;
@@ -329,23 +328,18 @@ body {
         transition: transform 0.3s ease-in;
         transform: translateY(0);
     }
-    
     .sidebar.open {
         transform: translateY(calc(-100vh + 50px));
     }
-
     .sidebar .mobile-close {
         display: block;
     }
-
     .mobile-open {
         display: block;
     }
-
     .leaflet-bottom {
         bottom: 40px !important;
     }
-
     .range-slider-wrapper {
         bottom: 90px;
     }
