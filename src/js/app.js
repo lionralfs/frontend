@@ -39,8 +39,9 @@ import inside from 'point-in-polygon';
     airChart = initAirChart(prepareDataForChart(airData));
 })();
 
-
 document.getElementById("openbtn").addEventListener("click", toggleSidebar);
+document.getElementById("map").addEventListener("click", hideTextbox);
+document.getElementById("about-site").addEventListener("click", showTextbox);
 document.querySelector('.mobile-open').addEventListener('click', toggleSideBarMobile);
 document.querySelector('.mobile-close').addEventListener('click', toggleSideBarMobile);
 
@@ -75,3 +76,11 @@ function closeSidebar() {
     document.getElementById("map").style.width = "200%";
     document.getElementById("openbtn").innerHTML = '&#9776;';
 }
+
+function showTextbox() {
+    document.getElementById("about").style.display = "block";
+  }
+  
+  function hideTextbox() {
+    document.getElementById("about").style.display = "none";
+  }
