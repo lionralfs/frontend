@@ -41,7 +41,8 @@ import inside from 'point-in-polygon';
 
 document.getElementById("openbtn").addEventListener("click", toggleSidebar);
 document.getElementById("map").addEventListener("click", hideTextbox);
-document.getElementById("about-site").addEventListener("click", showTextbox);
+document.getElementById("about-site").addEventListener("click", showAboutTextbox);
+document.getElementById("contact-site").addEventListener("click", showContactTextbox);
 document.querySelector('.mobile-open').addEventListener('click', toggleSideBarMobile);
 document.querySelector('.mobile-close').addEventListener('click', toggleSideBarMobile);
 
@@ -77,10 +78,17 @@ function closeSidebar() {
     document.getElementById("openbtn").innerHTML = '&#9776;';
 }
 
-function showTextbox() {
+function showAboutTextbox() {
+    hideTextbox();
     document.getElementById("about").style.display = "block";
-  }
-  
-  function hideTextbox() {
+}
+
+function showContactTextbox() {
+    hideTextbox();
+    document.getElementById("contact").style.display = "block";
+}
+
+function hideTextbox() {
+    document.getElementById("contact").style.display = "none";
     document.getElementById("about").style.display = "none";
-  }
+}
