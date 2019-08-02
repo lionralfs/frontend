@@ -88,7 +88,8 @@ body {
 
 /* Style the links inside the navigation bar */
 
-.topnav a,button {
+.topnav a,
+button {
     float: left;
     display: block;
     font: inherit;
@@ -114,7 +115,8 @@ body {
 
 /* Change the color of links on hover */
 
-.topnav a:hover,button:hover {
+.topnav a:hover,
+button:hover {
     background-color: #444;
     color: black;
     transition: background-color 0.3s;
@@ -276,17 +278,21 @@ body {
 }
 
 .textbox-layer {
-    position: relative; /* Sit on top of the page content */
-    display: none; /* Hidden by default */
-    background-color: rgba(0,0,0,0.7); /* Black background with opacity */
-    z-index: 700; /* Specify a stack order in case you're using a different order for other elements */
-    cursor: pointer; /* Add a pointer on hover */
+    position: relative;
+    /* Sit on top of the page content */
+    background-color: rgba(0, 0, 0, 0.7);
+    /* Black background with opacity */
+    z-index: 700;
+    /* Specify a stack order in case you're using a different order for other elements */
+    cursor: pointer;
+    /* Add a pointer on hover */
     margin-top: 10%;
     margin-left: 5%;
     margin-right: 5%;
     color: white;
     text-align: justify;
     transition: 5s;
+    display: none;
 }
 
 .textbox-layer a {
@@ -294,9 +300,10 @@ body {
     color: white;
 }
 
-
-.textbox-layer #about-content {
+.textbox-layer #about-content,
+#contact-content {
     position: relative;
+    /* Hidden by default */
     text-decoration: none;
     padding: 2%;
     padding-top: 1px;
