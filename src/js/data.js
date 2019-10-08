@@ -102,8 +102,8 @@ export function processData(data, now) {
   return result;
 }
 
-export async function getHeatmapForTimestamp(timestampInSeconds) {
-  const response = await fetch(`http://basecamp-demos.informatik.uni-hamburg.de:8080/AirDataBackendService/heatmap/?timestamp=${timestampInSeconds}`);
+export async function getHeatmapForTimestamp(timestampInSeconds, type) {
+  const response = await fetch(`http://basecamp-demos.informatik.uni-hamburg.de:8080/AirDataBackendService/heatmap/?timestamp=${timestampInSeconds}&type=${type}`);
   try {
     const data = await response.json();
     return data;

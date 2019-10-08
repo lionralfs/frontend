@@ -24,13 +24,14 @@ function getTimestampsFromDate(date) {
   const now = new Date();
   const today = new Date(Date.UTC(now.getFullYear(), now.getMonth(), now.getDate()));
 
+  let type = 'p10';
   let airChart;
   let sliderPosition = now.getUTCHours();
 
   let timestamps = getTimestampsFromDate(today);
   let cached = [];
 
-  const airData = await getHeatmapForTimestamp(Math.floor(now / 1000) - 3600);
+  const airData = await getHeatmapForTimestamp(Math.floor(now / 1000) - 3600, type);
   const heatmap = initMap(airData, function visibleAreaChanged(event) {
     // const bounds = event.target.getBounds();
     // const southWest = bounds._southWest;
@@ -60,7 +61,7 @@ function getTimestampsFromDate(date) {
       timestamps = getTimestampsFromDate(selectedDay);
       cached = [];
 
-      const newData = await getHeatmapForTimestamp(timestamps[sliderPosition]);
+      const newData = await getHeatmapForTimestamp(timestamps[sliderPosition], type);
       cached[sliderPosition] = newData;
       heatmap.setData({ data: newData, max: 500 });
     }
@@ -73,10 +74,20 @@ function getTimestampsFromDate(date) {
     if (cached[sliderPosition]) {
       newData = cached[sliderPosition];
     } else {
-      newData = await getHeatmapForTimestamp(timestamps[i]);
+      newData = await getHeatmapForTimestamp(timestamps[i], type);
       cached[sliderPosition] = newData;
     }
     heatmap.setData({ data: newData, max: 500 });
+  });
+
+  document.querySelector('.type-select').addEventListener('change', async function(evt) {
+      type = evt.target.value;
+
+      cached = [];
+
+      const newData = await getHeatmapForTimestamp(timestamps[sliderPosition], type);
+      cached[sliderPosition] = newData;
+      heatmap.setData({ data: newData, max: 500 });
   });
 
   // airChart = initAirChart(prepareDataForChart(airData));
