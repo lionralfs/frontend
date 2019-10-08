@@ -68,8 +68,11 @@ function pipe(...fns) {
 }
 
 export async function fetchData() {
-  const rawData = await fetch('https://api.luftdaten.info/static/v2/data.24h.json').then(r => r.json());
-  return processData(rawData, Date.now());
+  // const rawData = await fetch('https://api.luftdaten.info/static/v2/data.24h.json').then(r => r.json());
+  const rawData = await fetch('http://localhost:8080/heatmap/?timestamp=1234567').then(r => r.json());
+  console.log(rawData);
+  return rawData;
+  // return processData(rawData, Date.now());
 }
 
 /**
@@ -97,4 +100,15 @@ export function processData(data, now) {
   }
 
   return result;
+}
+
+export async function getHeatmapForTimestamp(timestampInSeconds) {
+  const response = await fetch(`http://basecamp-demos.informatik.uni-hamburg.de:8080/AirDataBackendService/heatmap/?timestamp=${timestampInSeconds}`);
+  try {
+    const data = await response.json();
+    return data;
+  } catch(e) {
+    console.error(e);
+    return [];
+  }
 }

@@ -10,25 +10,26 @@ function getElementWithinWrapper(wrapper, selector) {
   return result;
 }
 
-export function initRangeSlider(onChange) {
+export function initRangeSlider(initialPosition, onChange) {
   const wrapper = getSliderWrapper();
   const slider = getElementWithinWrapper(wrapper, '.range-slider');
   const leftLabel = getElementWithinWrapper(wrapper, '.left');
   const middleLabel = getElementWithinWrapper(wrapper, '.now');
   const rightLabel = getElementWithinWrapper(wrapper, '.right');
-  slider.value = '24';
+  slider.value = initialPosition.toString();
   wrapper.style.opacity = '1';
 
-  leftLabel.innerText = '-24h';
-  rightLabel.innerText = 'now';
+  leftLabel.innerText = '0h';
+  rightLabel.innerText = '24h';
+  middleLabel.innerText = `${initialPosition}h`;
 
   /*
   Eventlistener for the slider
   */
   slider.addEventListener('input', event => {
-    const sliderPos = 24 - parseInt(event.target.value);
+    const sliderPos = parseInt(event.target.value);
 
-    middleLabel.innerText = `-${sliderPos}h`;
+    middleLabel.innerText = `${sliderPos}h`;
     onChange(sliderPos);
   });
 }

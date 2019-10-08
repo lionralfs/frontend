@@ -14,11 +14,11 @@ const cfg = {
     //   (there will always be a red spot with useLocalExtremas true)
     useLocalExtrema: true,
     // which field name in your data represents the latitude - default "lat"
-    latField: 'lat',
+    latField: 'y',
     // which field name in your data represents the longitude - default "lng"
-    lngField: 'lng',
+    lngField: 'x',
     // which field name in your data represents the data value - default "value"
-    valueField: 'p2val'
+    valueField: 'value'
 };
 
 export function initMap(airData, onVisibleAreaChanged) {
@@ -36,7 +36,7 @@ export function initMap(airData, onVisibleAreaChanged) {
 
     leafletMap.on('zoomend', onVisibleAreaChanged);
     leafletMap.on('moveend', onVisibleAreaChanged);
-    heatmapLayer.setData({ data: airData });
+    heatmapLayer.setData({ data: airData, max: 500 });
 
     return heatmapLayer;
 }
