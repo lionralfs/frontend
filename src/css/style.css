@@ -384,10 +384,3 @@ button:hover {
         bottom: 90px;
     }
 }
-
-.date-select {
-    position: fixed;
-    z-index: 2000;
-    top: 66px;
-    left: 60px;
-}
