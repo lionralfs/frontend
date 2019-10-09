@@ -20,6 +20,17 @@ function getTimestampsFromDate(date) {
   return timestamps;
 }
 
+async function getDataForEntireDay(listOfTimestamps, type) {
+  const result = [];
+
+  for (const timestamp of listOfTimestamps) {
+    const data = await getHeatmapForTimestamp(timestamp, type);
+    result.push(data);
+  }
+  
+  return result;
+}
+
 (async () => {
   const now = new Date();
   const today = new Date(Date.UTC(now.getFullYear(), now.getMonth(), now.getDate()));
@@ -29,10 +40,9 @@ function getTimestampsFromDate(date) {
   let sliderPosition = now.getUTCHours();
 
   let timestamps = getTimestampsFromDate(today);
-  let cached = [];
+  let cached = await getDataForEntireDay(timestamps, type);
 
-  const airData = await getHeatmapForTimestamp(Math.floor(now / 1000) - 3600, type);
-  const heatmap = initMap(airData, function visibleAreaChanged(event) {
+  const heatmap = initMap(cached[sliderPosition], function visibleAreaChanged(event) {
     // const bounds = event.target.getBounds();
     // const southWest = bounds._southWest;
     // const northEast = bounds._northEast;
@@ -59,35 +69,23 @@ function getTimestampsFromDate(date) {
       const selectedDay = new Date(Date.UTC(date.getFullYear(), date.getMonth(), date.getDate()));
       console.log(selectedDay);
       timestamps = getTimestampsFromDate(selectedDay);
-      cached = [];
+      cached = await getDataForEntireDay(timestamps, type);
 
-      const newData = await getHeatmapForTimestamp(timestamps[sliderPosition], type);
-      cached[sliderPosition] = newData;
-      heatmap.setData({ data: newData, max: 500 });
+      heatmap.setData({ data: cached[sliderPosition], max: 500 });
     }
   });
   picker.setDate(today, true);
 
   initRangeSlider(sliderPosition, async function onChange(i) {
     sliderPosition = i;
-    let newData;
-    if (cached[sliderPosition]) {
-      newData = cached[sliderPosition];
-    } else {
-      newData = await getHeatmapForTimestamp(timestamps[i], type);
-      cached[sliderPosition] = newData;
-    }
-    heatmap.setData({ data: newData, max: 500 });
+    heatmap.setData({ data: cached[sliderPosition], max: 500 });
   });
 
   document.querySelector('.type-select').addEventListener('change', async function(evt) {
       type = evt.target.value;
 
-      cached = [];
-
-      const newData = await getHeatmapForTimestamp(timestamps[sliderPosition], type);
-      cached[sliderPosition] = newData;
-      heatmap.setData({ data: newData, max: 500 });
+      cached = await getDataForEntireDay(timestamps, type);
+      heatmap.setData({ data: cached[sliderPosition], max: 500 });
   });
 
   // airChart = initAirChart(prepareDataForChart(airData));
