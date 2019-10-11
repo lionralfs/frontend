@@ -92,6 +92,7 @@ async function getDataForEntireDay(listOfTimestamps, type) {
 })();
 
 document.getElementById('openbtn').addEventListener('click', toggleSidebar);
+document.getElementById('tb-close').addEventListener('click', hideTextbox);
 document.getElementById('map').addEventListener('click', hideTextbox);
 document.getElementById('about-site').addEventListener('click', showAboutTextbox);
 document.getElementById('contact-site').addEventListener('click', showContactTextbox);
@@ -103,6 +104,7 @@ function toggleSideBarMobile() {
 }
 
 function toggleSidebar() {
+  hideTextbox();
   let sidebarSize = document.getElementById('sidebar').style.width;
   if (sidebarSize == '30%') {
     return closeSidebar();
@@ -130,11 +132,13 @@ function closeSidebar() {
 }
 
 function showAboutTextbox() {
+  closeSidebar();
   hideTextbox();
   document.getElementById('about').style.display = 'block';
 }
 
 function showContactTextbox() {
+  closeSidebar();
   hideTextbox();
   document.getElementById('contact').style.display = 'block';
 }
