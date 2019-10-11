@@ -7,6 +7,7 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
     <link href="https://fonts.googleapis.com/css?family=Lato:300,400" rel="stylesheet" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet.locatecontrol/dist/L.Control.Locate.min.css" />
     <title>base.camp Luftdaten</title>
 </head>
 
@@ -53,6 +54,7 @@
     </div>
     <div id="map-wrapper" class="map-wrapper">
         <div id="map"></div>
+        <script src="https://cdn.jsdelivr.net/npm/leaflet.locatecontrol/dist/L.Control.Locate.min.js" charset="utf-8"></script>
         <button class="mobile-open">▲</button>
         <div class="range-slider-wrapper">
             <input type="range" min="0" max="24" steps="1" class="range-slider" />
@@ -60,7 +62,7 @@
             <span class="now"></span>
             <span class="right"></span>
         </div>
-        
+
     </div>
     <div id="sidebar" class="sidebar">
         <button class="mobile-close">▼</button>
@@ -74,9 +76,8 @@
                 <option value="p25">P25</option>
             </select>
             <p>
-                Die in der Karte dargestellten Farben sollen einen Überblick über die Konzentration der Feinstaubpartikel geben.
-                Hierbei wurde das natürliche Farbspektrum gewählt, in dem blau eine geringe bis gar keine Konzentration bedeutet 
-                und rot die höchste Konzentration repräsentiert.
+                Die in der Karte dargestellten Farben sollen einen Überblick über die Konzentration der Feinstaubpartikel geben. Hierbei wurde das natürliche Farbspektrum gewählt, in dem blau eine geringe bis gar keine Konzentration bedeutet und rot die höchste Konzentration
+                repräsentiert.
             </p>
             <canvas id="myChart" width="400" height="400"></canvas>
         </main>
