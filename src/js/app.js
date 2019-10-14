@@ -24,8 +24,15 @@ async function getDataForEntireDay(listOfTimestamps, type) {
   const result = [];
 
   for (const timestamp of listOfTimestamps) {
-    const data = await getHeatmapForTimestamp(timestamp, type);
-    result.push(data);
+    try {
+      const data = await getHeatmapForTimestamp(timestamp, type);
+      result.push(data);
+    } catch (e) {
+      console.error(e);
+      // when an error occurs, use an empty list
+      // and continue fetching the other timestamps
+      result.push([]);
+    }
   }
 
   return result;
@@ -78,7 +85,7 @@ async function getDataForEntireDay(listOfTimestamps, type) {
 
   initRangeSlider(sliderPosition, async function onChange(i) {
     sliderPosition = i;
-    
+
     // let max = 0;
     // const list = cached[sliderPosition];
     // for (const val of list) {
@@ -86,7 +93,7 @@ async function getDataForEntireDay(listOfTimestamps, type) {
     //     max = val.value;
     //   }
     // }
-    
+
     heatmap.setData({ data: cached[sliderPosition], max: 50 });
   });
 

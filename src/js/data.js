@@ -103,12 +103,27 @@ export function processData(data, now) {
 }
 
 export async function getHeatmapForTimestamp(timestampInSeconds, type) {
-  const response = await fetch(`http://basecamp-demos.informatik.uni-hamburg.de:8080/AirDataBackendService/heatmap/?timestamp=${timestampInSeconds}&type=${type}`);
-  try {
-    const data = await response.json();
-    return data;
-  } catch(e) {
-    console.error(e);
-    return [];
-  }
+  const timeout = 3000; // 3 seconds
+  const url = `http://basecamp-demos.informatik.uni-hamburg.de:8080/AirDataBackendService/heatmap/?timestamp=${timestampInSeconds}&type=${type}`;
+
+  const result = await Promise.race([
+    new Promise(async resolve => {
+      try {
+        const response = await fetch(url);
+        const data = await response.json();
+        return resolve(data);
+      } catch (e) {
+        console.error(e);
+        return resolve([]);
+      }
+    }),
+    new Promise(resolve =>
+      setTimeout(function() {
+        console.log(`Timed out: ${url}`);
+        resolve([]);
+      }, timeout)
+    )
+  ]);
+
+  return result;
 }
