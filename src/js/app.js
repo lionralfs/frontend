@@ -78,7 +78,16 @@ async function getDataForEntireDay(listOfTimestamps, type) {
 
   initRangeSlider(sliderPosition, async function onChange(i) {
     sliderPosition = i;
-    heatmap.setData({ data: cached[sliderPosition], max: 500 });
+    
+    // let max = 0;
+    // const list = cached[sliderPosition];
+    // for (const val of list) {
+    //   if (val.value > max) {
+    //     max = val.value;
+    //   }
+    // }
+    
+    heatmap.setData({ data: cached[sliderPosition], max: 50 });
   });
 
   document.querySelector('.type-select').addEventListener('change', async function(evt) {
