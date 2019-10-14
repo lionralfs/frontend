@@ -300,7 +300,7 @@ button:hover {
     color: white;
 }
 
-.textbox-layer #tb-close {
+.textbox-layer .tb-close {
     font-size: 20px;
     cursor: pointer;
     background-color: transparent;
