@@ -181,7 +181,7 @@ button:hover {
 
 .range-slider::-webkit-slider-thumb {
     -webkit-appearance: none;
-    border: 1px solid #000000;
+    border: 1px solid black;
     height: 40px;
     width: 12px;
     border-radius: 3px;
@@ -210,15 +210,14 @@ button:hover {
 /* the slider thumb for IE and Edge */
 
 .range-slider::-ms-thumb {
-    -webkit-appearance: none;
-    border: 1px solid #000000;
-    height: 40px;
-    width: 12px;
-    border-radius: 3px;
-    background: #ffffff;
+    margin-top: 1px;
+    box-shadow: 0px 0px 0px #000000;
+    border: 1px solid black;
+    height: 18px;
+    width: 18px;
+    border-radius: 25px;
+    background: white;
     cursor: pointer;
-    margin-top: -14px;
-    box-shadow: 1px 1px 1px #000000, 0px 0px 1px black;
 }
 
 
@@ -243,10 +242,11 @@ button:hover {
 
 /* the slider track for IE and Edge */
 
-.range-slider::-ms-range-track {
-    border-radius: 2px;
+.range-slider::-ms-track {
+    border-radius: 10px;
     background: black;
     border: 1px solid black;
+    height: 9px;
 }
 
 .range-slider-wrapper .left {
@@ -298,6 +298,21 @@ button:hover {
 .textbox-layer a {
     text-decoration: none;
     color: white;
+}
+
+.textbox-layer .tb-close {
+    font-size: 20px;
+    cursor: pointer;
+    background-color: transparent;
+    color: rgb(255, 255, 255);
+    padding: 12px 15px;
+    position: absolute;
+    text-align: center;
+    top: 0;
+    right: 0;
+    z-index: 500;
+    border: none;
+    transition: background-color 0.2s;
 }
 
 .textbox-layer #about-content,

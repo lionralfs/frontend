@@ -20,6 +20,7 @@
         <button id="openbtn" class="openbtn">&#9776;</button>
     </div>
     <div id="about" class="textbox-layer">
+        <button class="tb-close">&#10005</button>
         <div id="about-content">
             <h1>Über dieses Projekt</h1>
             <p>Dieses Projekt visualisiert Umweltdaten, wie Feinstaubwerte, die von einer öffentlichen Initiative erstellt werden (<a href="https://luftdaten.info" target=blank>https://luftdaten.info <i class="fa fa-external-link"></i></a>).</p>
@@ -36,17 +37,18 @@
         </div>
     </div>
     <div id="contact" class="textbox-layer">
+            <button class="tb-close">&#10005</button>
         <div id="contact-content">
             <h1>Kontakt</h1>
             <p>
-                Universität Hamburg </br>
-                Fachbereich Informatik </br>
-                Vogt-Kölln-Straße 30, Raum G-027 </br>
+                Universität Hamburg <br>
+                Fachbereich Informatik <br>
+                Vogt-Kölln-Straße 30, Raum G-027 <br>
                 22527 Hamburg
             </p>
             <p>
-                <b>Tel.: </b>+49 40 42883 2284 </br>
-                <b>Mail: </b><a href="mailto:basecamp@informatik.uni-hamburg.de">basecamp@informatik.uni-hamburg.de</a> </br>
+                <b>Tel.: </b>+49 40 42883 2284 <br>
+                <b>Mail: </b><a href="mailto:basecamp@informatik.uni-hamburg.de">basecamp@informatik.uni-hamburg.de</a> <br>
                 <b>Web: </b><a href="https://basecamp.informatik.uni-hamburg.de" target=blank>https://basecamp.informatik.uni-hamburg.de</a>
             </p>
         </div>
@@ -56,9 +58,11 @@
         <button class="mobile-open">▲</button>
         <div class="range-slider-wrapper">
             <input type="range" min="0" max="24" steps="1" class="range-slider" />
-            <span class="left"></span>
-            <span class="now"></span>
-            <span class="right"></span>
+            <b>
+                <span class="left"></span>
+                <span class="now"></span>
+                <span class="right"></span>
+            </b>
         </div>
         
     </div>
@@ -73,7 +77,7 @@
                 <option value="p10" selected>P10</option>
                 <option value="p25">P25</option>
             </select>
-            <p>
+            <p style="text-align: justify;">
                 Die in der Karte dargestellten Farben sollen einen Überblick über die Konzentration der Feinstaubpartikel geben.
                 Hierbei wurde das natürliche Farbspektrum gewählt, in dem blau eine geringe bis gar keine Konzentration bedeutet 
                 und rot die höchste Konzentration repräsentiert.

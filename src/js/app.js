@@ -27,7 +27,7 @@ async function getDataForEntireDay(listOfTimestamps, type) {
     const data = await getHeatmapForTimestamp(timestamp, type);
     result.push(data);
   }
-  
+
   return result;
 }
 
@@ -82,27 +82,37 @@ async function getDataForEntireDay(listOfTimestamps, type) {
   });
 
   document.querySelector('.type-select').addEventListener('change', async function(evt) {
-      type = evt.target.value;
+    type = evt.target.value;
 
-      cached = await getDataForEntireDay(timestamps, type);
-      heatmap.setData({ data: cached[sliderPosition], max: 500 });
+    cached = await getDataForEntireDay(timestamps, type);
+    heatmap.setData({ data: cached[sliderPosition], max: 500 });
   });
 
   // airChart = initAirChart(prepareDataForChart(airData));
 })();
 
-document.getElementById('openbtn').addEventListener('click', toggleSidebar);
-document.getElementById('map').addEventListener('click', hideTextbox);
-document.getElementById('about-site').addEventListener('click', showAboutTextbox);
-document.getElementById('contact-site').addEventListener('click', showContactTextbox);
-document.querySelector('.mobile-open').addEventListener('click', toggleSideBarMobile);
-document.querySelector('.mobile-close').addEventListener('click', toggleSideBarMobile);
+window.addEventListener('DOMContentLoaded', function() {
+  // DOM has been fully loaded and parsed
+  document.getElementById('openbtn').addEventListener('click', toggleSidebar);
+
+  // targets all elements with the class 'tb-close'
+  for (let element of Array.from(document.querySelectorAll('.tb-close'))) {
+    element.addEventListener('click', hideTextbox);
+  }
+
+  document.getElementById('map').addEventListener('click', hideTextbox);
+  document.getElementById('about-site').addEventListener('click', showAboutTextbox);
+  document.getElementById('contact-site').addEventListener('click', showContactTextbox);
+  document.querySelector('.mobile-open').addEventListener('click', toggleSideBarMobile);
+  document.querySelector('.mobile-close').addEventListener('click', toggleSideBarMobile);
+});
 
 function toggleSideBarMobile() {
   document.querySelector('.sidebar').classList.toggle('open');
 }
 
 function toggleSidebar() {
+  hideTextbox();
   let sidebarSize = document.getElementById('sidebar').style.width;
   if (sidebarSize == '30%') {
     return closeSidebar();
@@ -130,11 +140,13 @@ function closeSidebar() {
 }
 
 function showAboutTextbox() {
+  closeSidebar();
   hideTextbox();
   document.getElementById('about').style.display = 'block';
 }
 
 function showContactTextbox() {
+  closeSidebar();
   hideTextbox();
   document.getElementById('contact').style.display = 'block';
 }
