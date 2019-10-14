@@ -92,7 +92,12 @@ async function getDataForEntireDay(listOfTimestamps, type) {
 })();
 
 document.getElementById('openbtn').addEventListener('click', toggleSidebar);
-document.getElementById('tb-close').addEventListener('click', hideTextbox);
+
+// targets all elements with the class 'tb-close'
+for (let element of Array.from(document.querySelectorAll('.tb-close'))) {
+  element.addEventListener('click', hideTextbox);
+}
+
 document.getElementById('map').addEventListener('click', hideTextbox);
 document.getElementById('about-site').addEventListener('click', showAboutTextbox);
 document.getElementById('contact-site').addEventListener('click', showContactTextbox);
