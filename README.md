@@ -6,7 +6,7 @@ This web app uses sensor data from the openSource project luftdaten.info to pred
 
 ## Setup
 
-To start developing, there are 2 options to get the project up and running:
+To start developing, there are two options to get the project up and running:
 
 1. via Docker
 
@@ -40,6 +40,7 @@ To start developing, there are 2 options to get the project up and running:
    to start the development server.
 
 ## Contributing
+To contribute please follow these few steps:
 
 1. `git checkout master`
 2. `git pull`
