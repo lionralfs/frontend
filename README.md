@@ -38,6 +38,10 @@ To start developing, there are two options to get the project up and running:
    ```
 
    to start the development server.
+   
+## Build
+
+TODO
 
 ## Contributing
 To contribute please follow these few steps:
