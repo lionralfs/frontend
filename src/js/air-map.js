@@ -1,6 +1,7 @@
 import { map, tileLayer } from 'leaflet';
 import HeatmapOverlay from 'heatmap.js/plugins/leaflet-heatmap';
 import 'leaflet/dist/leaflet.css';
+import { updateLegend } from './legend';
 
 const cfg = {
     // radius should be small ONLY if scaleRadius is true (or small radius is intended)
@@ -20,7 +21,9 @@ const cfg = {
     lngField: 'x',
     // which field name in your data represents the data value - default "value"
     valueField: 'value',
-    onExtremaChange: console.log
+    onExtremaChange: function(data) {
+        updateLegend(data);
+    }
 };
 
 export function initMap(airData, onVisibleAreaChanged) {

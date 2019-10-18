@@ -355,6 +355,19 @@ button:hover {
     cursor: pointer;
 }
 
+.legend-area {
+    bottom: 0;
+    right: 0;
+}
+
+.legend-area #min {
+    float: left;
+}
+
+.legend-area #max {
+    float: right;
+}
+
 
 /* On screens that are 600px wide or less, make the menu links stack on top of each other instead of next to each other */
 
