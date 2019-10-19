@@ -38,12 +38,22 @@ To start developing, there are two options to get the project up and running:
    ```
 
    to start the development server.
-   
+
 ## Build
 
-TODO
+To create a production build, you have two options again:
+
+1. If you've set up the project using Docker:
+   1. Delete the `dist` directory if it exists.
+   2. Execute `docker-compose exec web npm run build` while the container is running.
+2. If you've set up the project using npm directly:
+   1. Delete the `dist` directory if it exists.
+   2. Execute `npm run build`.
+
+The generated HTML/CSS/JavaScript files should now be in the `dist` directory.
 
 ## Contributing
+
 To contribute please follow these few steps:
 
 1. `git checkout master`
