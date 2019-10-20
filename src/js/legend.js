@@ -1,6 +1,5 @@
 // https://www.patrick-wied.at/static/heatmapjs/example-legend-tooltip.html
 
-/*  start legend code */
 // we want to display the gradient, so we have to draw it
 var legendCanvas = document.createElement('canvas');
 legendCanvas.width = 100;
@@ -27,5 +26,4 @@ export function updateLegend(data) {
         legendCtx.fillRect(0, 0, 100, 10);
         gradientImg.src = legendCanvas.toDataURL();
     }
-};
-/* legend code end */
+}

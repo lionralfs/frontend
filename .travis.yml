@@ -5,4 +5,3 @@ dist: trusty
 cache: npm
 script:
   - npm run build
-  - npm test

@@ -38,73 +38,89 @@ async function getDataForEntireDay(listOfTimestamps, type) {
     return result;
 }
 
-(async() => {
+(async () => {
     const now = new Date();
     const today = new Date(Date.UTC(now.getFullYear(), now.getMonth(), now.getDate()));
 
+    const max = 75;
     let type = 'p10';
     let airChart;
     let sliderPosition = now.getUTCHours();
 
     let timestamps = getTimestampsFromDate(today);
-    let cached = await getDataForEntireDay(timestamps, type);
+    let dataFullDay = await getDataForEntireDay(timestamps, type);
 
-    const heatmap = initMap(cached[sliderPosition], function visibleAreaChanged(event) {
-        // const bounds = event.target.getBounds();
-        // const southWest = bounds._southWest;
-        // const northEast = bounds._northEast;
-        // const polygon = [
-        //     [southWest.lng, southWest.lat],
-        //     [southWest.lng, northEast.lat],
-        //     [northEast.lng, northEast.lat],
-        //     [northEast.lng, southWest.lat]
-        // ];
-        // const filtered = airData.map(function(interval) {
-        //     return interval.filter(function(measurement) {
-        //         return inside([measurement.lng, measurement.lat], polygon);
-        //     });
-        // });
-        // const data = prepareDataForChart(filtered);
-        // airChart.onDataChange(data);
+    const heatmap = initMap(dataFullDay[sliderPosition], max, function visibleAreaChanged(event) {
+        const bounds = event.target.getBounds();
+        const southWest = bounds._southWest;
+        const northEast = bounds._northEast;
+        const polygon = [
+            [southWest.lng, southWest.lat],
+            [southWest.lng, northEast.lat],
+            [northEast.lng, northEast.lat],
+            [northEast.lng, southWest.lat]
+        ];
+
+        const visibleData = [];
+        // go through every day of the dataset and filter out
+        //everything that is not contained in the polygon
+        for (const day of dataFullDay) {
+            const filtered = day.filter(function(measurement) {
+                return inside([measurement.x, measurement.y], polygon);
+            });
+            visibleData.push(filtered);
+        }
+        const data = prepareDataForChart(visibleData);
+        airChart.onDataChange(data, type);
     });
 
+    /**
+     * When the date in the datepicker changes
+     */
     const picker = datepicker('.date-select', {
-        onSelect: async(instance, date) => {
+        onSelect: async (instance, date) => {
             if (!date) {
                 date = today;
             }
-            const selectedDay = new Date(Date.UTC(date.getFullYear(), date.getMonth(), date.getDate()));
-            console.log(selectedDay);
-            timestamps = getTimestampsFromDate(selectedDay);
-            cached = await getDataForEntireDay(timestamps, type);
+            const selectedDay = new Date(
+                Date.UTC(date.getFullYear(), date.getMonth(), date.getDate())
+            );
 
-            heatmap.setData({ data: cached[sliderPosition], max: 500 });
+            timestamps = getTimestampsFromDate(selectedDay);
+            dataFullDay = await getDataForEntireDay(timestamps, type);
+
+            // update map
+            heatmap.setData({ data: dataFullDay[sliderPosition], max: max });
+
+            // update chart
+            airChart.onDataChange(prepareDataForChart(dataFullDay), type);
         }
     });
     picker.setDate(today, true);
 
+    /**
+     * When the slider position changes
+     */
     initRangeSlider(sliderPosition, async function onChange(i) {
         sliderPosition = i;
 
-        // let max = 0;
-        // const list = cached[sliderPosition];
-        // for (const val of list) {
-        //   if (val.value > max) {
-        //     max = val.value;
-        //   }
-        // }
-
-        heatmap.setData({ data: cached[sliderPosition], max: 50 });
+        heatmap.setData({ data: dataFullDay[sliderPosition], max: max });
     });
 
+    /**
+     * When the dust type dropdown changes from p10 <-> p25
+     */
     document.querySelector('.type-select').addEventListener('change', async function(evt) {
         type = evt.target.value;
 
-        cached = await getDataForEntireDay(timestamps, type);
-        heatmap.setData({ data: cached[sliderPosition], max: 500 });
+        dataFullDay = await getDataForEntireDay(timestamps, type);
+        // update map
+        heatmap.setData({ data: dataFullDay[sliderPosition], max: max });
+        // update chart
+        airChart.onDataChange(prepareDataForChart(dataFullDay), type);
     });
 
-    // airChart = initAirChart(prepareDataForChart(airData));
+    airChart = initAirChart(prepareDataForChart(dataFullDay), type);
 })();
 
 window.addEventListener('DOMContentLoaded', function() {
