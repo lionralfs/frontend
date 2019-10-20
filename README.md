@@ -4,6 +4,8 @@
 
 This web app uses sensor data from the openSource project luftdaten.info to predict particulate matter development for Germany. The project was implemented as part of the base.camp of the Department of Computer Science at the University of Hamburg.
 
+![User-Interface](/src/img/screenshots/sidebar-open.png)
+
 ## Setup
 
 To start developing, there are two options to get the project up and running:
