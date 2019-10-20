@@ -175,15 +175,21 @@ function showAboutTextbox() {
     closeSidebar();
     hideTextbox();
     document.getElementById('about').style.display = 'block';
+    document.querySelector('body').style.overflow = 'visible';
+    document.querySelector('body').style.msOverflowStyle = 'auto';
 }
 
 function showContactTextbox() {
     closeSidebar();
     hideTextbox();
     document.getElementById('contact').style.display = 'block';
+    document.querySelector('body').style.overflow = 'visible';
+    document.querySelector('body').style.msOverflowStyle = 'auto';
 }
 
 function hideTextbox() {
     document.getElementById('contact').style.display = 'none';
     document.getElementById('about').style.display = 'none';
+    document.querySelector('body').style.overflow = 'hidden';
+    document.querySelector('body').style.msOverflowStyle = 'none';
 }
